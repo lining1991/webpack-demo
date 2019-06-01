@@ -1,17 +1,13 @@
-import './style.css';
 import _ from 'lodash';
-import Icon from './photo.jpg';
-
+import printMe form './print.js';
 function component() {
     const element = document.createElement('div');
+    const btn = document.createElement('button');
     element.innerHTML = _.join(['hello', 'webpack'], ' ');
 
-    const myIcon = new Image();
-    myIcon.src = Icon;
-    element.appendChild(myIcon);
-
-
-    element.classList.add('hello');
+    btn.innerHTML = 'click me';
+    btn.onclik = printMe;
+    element.appendChild(btn);
     return element;
 }
 

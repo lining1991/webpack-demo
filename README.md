@@ -10,3 +10,6 @@
 ```
 test: /\.(png|svg|jpg|gif)$/,
 ```
+### loader模块是按书写顺序倒着执行，先用css-loader解析.css文件，遇到@import之类的预检就相应的将文件引入，计算出来最终版css。最后会使用style-loader生成最终解析完的css代码，并用style标签插入head.(ps：css代码仍旧是混在js里边的，是用js动态插入style标签到head标签里的。)
+### 如果需要使用json文件可以不用loader直接处理 import Data from './a.json'
+### file-loader 用来处理图片的解析与引入 
