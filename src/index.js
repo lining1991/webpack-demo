@@ -1,14 +1,16 @@
 import _ from 'lodash';
-import printMe form './print.js';
+// import printMe from './print.js';
 function component() {
     const element = document.createElement('div');
     const btn = document.createElement('button');
     element.innerHTML = _.join(['hello', 'webpack'], ' ');
 
-    btn.innerHTML = 'click me';
-    btn.onclik = printMe;
+    // btn.innerHTML = printMe;
+    // btn.onclick = printMe;
+    // dd
     element.appendChild(btn);
     return element;
 }
 
 document.body.appendChild(component());
+
