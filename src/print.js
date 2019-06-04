@@ -1,3 +1,3 @@
 export default function printMe() {
-    console.log('i get called form index.js')
+    console.log('updating print.js are有卡卡卡')
 }

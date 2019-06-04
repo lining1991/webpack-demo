@@ -20,3 +20,7 @@ test: /\.(png|svg|jpg|gif)$/,
 > * manifest bundle 会因为现在包含一个新模块的引用，而发生变化。
 > 一三符合预期 源自[webpack官网缓存一节](https://webpack.docschina.org/guides/caching)
 按照官网说法引入webpack.HashedModuleIdsPlugin()之后vendor 不会变，实际结果vendor和manifest都没变
+
+### npm view webpack version 查看某个包的版本
+### [contenthash:7] [chunkhash:7] 不能与热更模块一起使用 使用热更模块的时候要用[hash:7]
+
