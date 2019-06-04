@@ -13,8 +13,15 @@ module.exports = {
         print: './src/print.js'
     },
     devServer: {
-        contentBase: './dist', // 这个配置是告诉webpack-dev-server 将dist目录下的文件serve到localhost:8080下
-        hot: true
+        // 这个配置是告诉webpack-dev-server 将dist目录下的文件serve到localhost:8080下
+        // ps: 感觉contentBase这里咋配置都行啊 以为dist文件夹下并木有任何文件呀
+        // https://webpack.docschina.org/configuration/dev-server/#src/components/Sidebar/Sidebar.jsx
+        contentBase: './areyouok',
+        hot: true,
+        port: 8084,
+        after: function(app, server) {
+            console.log(`运行在哪个port*******`)
+        }
     },
     // devtool: 'inline-source-map',
     output: {
