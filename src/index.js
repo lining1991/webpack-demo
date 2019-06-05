@@ -7,7 +7,7 @@
 //         return element;
 //     }).catch(error => 'An error occurred while loading the component');
 // }
-
+import(/* webpackPrefetch: true */ 'loginModal');
 // 使用async函数改写
 async function getComponent() {
     const {default:_} = await import(/* webpackChunkName: 'myLodash' */ 'lodash');
