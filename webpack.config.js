@@ -15,13 +15,19 @@ module.exports = {
     devServer: {
         // 这个配置是告诉webpack-dev-server 将dist目录下的文件serve到localhost:8080下
         // ps: 感觉contentBase这里咋配置都行啊 以为dist文件夹下并木有任何文件呀
-        // https://webpack.docschina.org/configuration/dev-server/#src/components/Sidebar/Sidebar.jsx
-        contentBase: './areyouok',
+        // 关于ps的这里有解答 https://webpack.docschina.org/configuration/dev-server/#src/components/Sidebar/Sidebar.jsx
+        // ps: 貌似
+        // contentBase: './areyouok',
+        contentBase: path.resolve(__dirname, './dist'),
         hot: true,
         port: 8084,
         after: function(app, server) {
             console.log(`运行在哪个port*******`)
-        }
+        },
+        https: true,
+        disableHostCheck: true,  //绕过主机检查不建议这样做,
+        index: 'index.html',
+        publicPath: '/assets/' // 答案在这里，结合上边的contentBase有些意思
     },
     // devtool: 'inline-source-map',
     output: {
@@ -66,7 +72,7 @@ module.exports = {
         // }),
         new webpack.HotModuleReplacementPlugin(),
         // new CleanWebpackPlugin(['dist']) 不传这个参数也OK 默认就是dist其实
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new webpackManifestPlugin({
             filter: function (FileDescriptor) {
                 return FileDescriptor.isChunk;
