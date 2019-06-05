@@ -8,10 +8,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     mode:'development',
-    entry: {
-        main: './src/index.js',
-        print: './src/print.js'
-    },
     devServer: {
         // 这个配置是告诉webpack-dev-server 将dist目录下的文件serve到localhost:8080下
         // ps: 感觉contentBase这里咋配置都行啊 以为dist文件夹下并木有任何文件呀
@@ -30,6 +26,11 @@ module.exports = {
         publicPath: '/assets/' // 答案在这里，结合上边的contentBase有些意思
     },
     // devtool: 'inline-source-map',
+    entry: {
+        main: './src/index.js',
+        another: './src/another-module.js'
+        // print: './src/print.js'
+    },
     output: {
         // [id] 内部chunkid 0 1 等等数字
         // [hash] 每次构建过程中，唯一的hash生成。如果没有任何内容修改，则hash不变。但是但凡有一个文件内容有修改，则所有的都会变化。而且所有文件都是一个hash
@@ -42,18 +43,25 @@ module.exports = {
         // path: './dist'    
         // publicPath: '/'
     },
-    optimization: {
-        runtimeChunk: 'single', // 将其设置为 single 来为所有 chunk 创建一个 runtime bundle：
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                  test: /[\\/]node_modules[\\/]/,
-                  name: 'vendors',
-                  chunks: 'all'
-                }
-            }
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //         name: 'vendor',// 可以定义提取出来的公共文件的名称
+    //     }
+    // },
+    // optimization:优化
+    // optimization: {
+    //     runtimeChunk: 'single', // 将其设置为 single 来为所有 chunk 创建一个 runtime bundle：
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             vendor: {
+    //               test: /[\\/]node_modules[\\/]/,
+    //               name: 'vendors',
+    //               chunks: 'all'
+    //             }
+    //         }
+    //     }
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Output Mangement'
@@ -71,8 +79,9 @@ module.exports = {
         //     logLevel: 'info'
         // }),
         new webpack.HotModuleReplacementPlugin(),
-        // new CleanWebpackPlugin(['dist']) 不传这个参数也OK 默认就是dist其实
-        // new CleanWebpackPlugin(),
+        // ❌ new CleanWebpackPlugin(['dist']), //不传这个参数也OK 默认就是dist其实
+        //  在webpack官网上看到上边的写法，实际运行测试了下会报错.去插件官网看了下 参数应该是一个对象
+        new CleanWebpackPlugin(),
         new webpackManifestPlugin({
             filter: function (FileDescriptor) {
                 return FileDescriptor.isChunk;
