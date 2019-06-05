@@ -7,14 +7,34 @@
 //         return element;
 //     }).catch(error => 'An error occurred while loading the component');
 // }
-import(/* webpackPrefetch: true */ './login-modal-chunk.js');
+// import(/* webpackPrefetch: true */ './login-modal-chunk.js'); ps: 怎么写都不对
 // 使用async函数改写
-async function getComponent() {
-    const {default:_} = await import(/* webpackChunkName: 'myLodash' */ 'lodash');
-    element.innerHTML = _.join(['hello', 'world'], ' ');
+// async function getComponent() {
+//     const {default:_} = await import(/* webpackChunkName: 'myLodash' */ 'lodash');
+//     element.innerHTML = _.join(['hello', 'world'], ' ');
+//     return element;
+// }
+// getComponent().then(component => {
+//     document.body.appendChild(component);
+// })
+
+import _ from 'lodash';
+
+function component() {
+    var element = document.createElement('div');
+    var button = document.createElement('button');
+    var br = document.createElement('br');
+
+    button.innerHTML = 'Click me and look at the console!';
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.appendChild(br);
+    element.appendChild(button);
+
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+        var print = module.default;
+        print();
+    });
+
     return element;
 }
-getComponent().then(component => {
-    document.body.appendChild(component);
-})
-
+document.body.appendChild(component());

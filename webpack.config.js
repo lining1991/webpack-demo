@@ -28,7 +28,7 @@ module.exports = {
     // devtool: 'inline-source-map',
     entry: {
         main: './src/index.js',
-        another: './src/another-module.js'
+        // another: './src/another-module.js'
         // print: './src/print.js'
     },
     output: {
