@@ -17,7 +17,7 @@ glob插件基于javascript。使用minimatch库来进行匹配
 ## html-webpack-plugin
 * 用来生成HTML文件
 * 面对多入口要生成多个html文件的场景，需要用入口对象的key,然后遍历push进webpck.plugin
-* fileName参数用来配置生成出来的路径及文件，默认在dist里边 pages/sq/index.html
+* fileName参数用来配置生成出来的路径及文件，路径默认是相对于webpack的出口文件所在文件夹 ../pages/sq/index.html 
 * chunks参数用来指定哪些分支插入到html文件。默认值为所有chunk分支组成的数组。也就是说默认webpack生成的js都会被插入到生成的HTML文件里边。这个对于多个HTML中有公用逻辑之类的很有用。
 * chunksSortMode 用来决定chunks的的插入顺序。具体每个参数的意义参看该插件lib/chunksorter.js
 ``` javascript
