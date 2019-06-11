@@ -14,5 +14,30 @@ glob插件基于javascript。使用minimatch库来进行匹配
 > -v, --verbose    详细显示进行的步骤
 > --help     显示此帮助信息并退出
 > --version  输出版本信息并退出
+## html-webpack-plugin
+* 用来生成HTML文件
+* 面对多入口要生成多个html文件的场景，需要用入口对象的key,然后遍历push进webpck.plugin
+* fileName参数用来配置生成出来的路径及文件，默认在dist里边 pages/sq/index.html
+* 默认webpack生成的js都会被插入到生成的HTML文件里边，chunks参数用来指定哪些分支插入到html文件。这个对于多个HTML中有公用逻辑之类的很有用。
+``` javascript
+let config = {
+    plugins:[
+       // for some code
+       new CleanWebpackPlugin(),
+    ]
+}
+// entries 为webpack的entry字段 大概是{'pindao/index': ...,'pindao/index2': ...,}
+let pages = Object.keys(entries);
+
+pages.forEach((item, index) => {
+    devConfig.plugins.push(new htmlWebpackPlugin({
+        title: '加油吧少年',
+        filename: `${item}.html`,
+        template: path.resolve(__dirname, `./src/tpl/${item}.ejs`),
+        chunks: ['commons', item]
+    }))
+});
+module.exports = config;
+```
 
 
