@@ -40,5 +40,20 @@ pages.forEach((item, index) => {
 });
 module.exports = config;
 ```
+* 还可以自定义一些其他的key,然后再ejs模板中使用。可以实现按顺序插入css和js的场景。
+```
+new htmlWebpackPlugin({
+    head: ['commons', item],
+    body: ['vendor', 'commons', item]
+})
+```
+## optimization.splitChunks 这个属性很多变，哪个配置稍微一改就会有出乎意外的变化·
+* maxSize: 表示抽取出来的文件在压缩前的最大大小，默认为 0，表示不限制最大大小；
+
+* 优先级排序： maxInitialRequest/maxAsyncRequests < maxSize < minSize 
+* 你在cacheGroups里配置的分支是否能被打包出来不仅仅取决于当前key,还取决于maxInitialRequest/maxAsyncRequests < maxSize < minSize 这四个配置
+* ？maxSize的值竟然影响到了生成js的名字，生成的js名字是分支名~一串hash
+
+
 
 

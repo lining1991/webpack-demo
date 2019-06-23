@@ -43,12 +43,12 @@ module.exports = {
         // path: './dist'    
         // publicPath: '/'
     },
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: 'all',
-    //         name: 'vendor',// 可以定义提取出来的公共文件的名称
-    //     }
-    // },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            name: 'vendor',// 可以定义提取出来的公共文件的名称
+        }
+    },
     // optimization:优化
     // optimization: {
     //     runtimeChunk: 'single', // 将其设置为 single 来为所有 chunk 创建一个 runtime bundle：
